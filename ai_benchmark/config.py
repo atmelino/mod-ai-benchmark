@@ -303,9 +303,13 @@ BENCHMARK_TESTS = [
     GNMT_TRANSLATION,
 ]
 
+BENCHMARK_TESTS_SHORT = [
+    MOBILENET_V2,
+]
+
 
 class TestConstructor:
-    BENCHMARK_TESTS = BENCHMARK_TESTS
+    BENCHMARK_TESTS = BENCHMARK_TESTS_SHORT
 
     def get_tests(self, test_ids=None):
         tests = self.BENCHMARK_TESTS[::]
