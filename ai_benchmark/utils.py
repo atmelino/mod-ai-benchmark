@@ -257,6 +257,7 @@ def compute_stats(results):
 
 
 def print_test_results(prefix, batch_size, dimensions, mean, std):
+    global resultCollector
     if std > 1 and mean > 100:
         prt_str = "%s | batch=%d, size=%dx%d: %.d ± %.d ms" % (
             prefix, batch_size, dimensions[1], dimensions[2], round(mean), round(std))
@@ -478,6 +479,8 @@ def run_tests(
         inter_threads=None,
         intra_threads=None,
     ):
+    global resultCollector
+
     # print(test_ids)
     testInfo = TestInfo(_type, precision, use_cpu, verbose, cpu_cores, inter_threads, intra_threads)
     testInfo.full_suite = (
