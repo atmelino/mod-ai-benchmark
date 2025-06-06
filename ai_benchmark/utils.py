@@ -23,6 +23,7 @@ from ai_benchmark.config import TestConstructor
 from ai_benchmark.models import *
 
 MAX_TEST_DURATION = 100
+resultCollector=[]
 
 logger = logging.getLogger('ai_benchmark')
 
@@ -79,7 +80,6 @@ class TestInfo:
         self.results = None
         self.path = path.dirname(__file__)
 
-    resultCollector=[]
 
 def get_time_seconds():
     return int(time.time())
