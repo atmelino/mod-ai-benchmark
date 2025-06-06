@@ -265,7 +265,7 @@ def print_test_results(prefix, batch_size, dimensions, mean, std):
         prt_str = "%s | batch=%d, size=%dx%d: %.1f ± %.1f ms" % (
             prefix, batch_size, dimensions[1], dimensions[2], mean, std)
     logger.info(prt_str)
-    resultCollector.append(prefix)
+    resultCollector.append({"prefix":prefix,"mean":mean,"std":std})
 
 def print_intro():
     import ai_benchmark
