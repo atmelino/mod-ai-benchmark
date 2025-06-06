@@ -11,4 +11,12 @@ test_ids = [
     "5",
 ]
 
-results = AIBenchmark().run(test_ids=test_ids)
+testInfo, public_results, resultCollector = AIBenchmark().run(test_ids=test_ids)
+# print(testInfo)
+# print(public_results)
+print(resultCollector)
+
+for r in resultCollector:
+    print(r)
+    print(r['prefix'])
+    

@@ -624,4 +624,4 @@ def run_tests(
 
     os.chdir(start_dir)
     print(resultCollector)
-    return testInfo, public_results
+    return testInfo, public_results, resultCollector
