@@ -79,6 +79,7 @@ class TestInfo:
         self.results = None
         self.path = path.dirname(__file__)
 
+    resultCollector=[]
 
 def get_time_seconds():
     return int(time.time())
@@ -263,7 +264,7 @@ def print_test_results(prefix, batch_size, dimensions, mean, std):
         prt_str = "%s | batch=%d, size=%dx%d: %.1f ± %.1f ms" % (
             prefix, batch_size, dimensions[1], dimensions[2], mean, std)
     logger.info(prt_str)
-
+    resultCollector.append(prefix)
 
 def print_intro():
     import ai_benchmark
@@ -477,8 +478,7 @@ def run_tests(
         inter_threads=None,
         intra_threads=None,
     ):
-
-    print(test_ids)
+    # print(test_ids)
     testInfo = TestInfo(_type, precision, use_cpu, verbose, cpu_cores, inter_threads, intra_threads)
     testInfo.full_suite = (
         test_ids is None or
@@ -620,4 +620,5 @@ def run_tests(
     public_results = print_scores(testInfo, public_results)
 
     os.chdir(start_dir)
+    print(resultCollector)
     return testInfo, public_results
