@@ -479,7 +479,7 @@ def run_tests(
         inter_threads=None,
         intra_threads=None,
     ):
-    global resultCollector
+    print(resultCollector)
 
     # print(test_ids)
     testInfo = TestInfo(_type, precision, use_cpu, verbose, cpu_cores, inter_threads, intra_threads)
