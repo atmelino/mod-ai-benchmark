@@ -477,6 +477,8 @@ def run_tests(
         inter_threads=None,
         intra_threads=None,
     ):
+
+    print(test_ids)
     testInfo = TestInfo(_type, precision, use_cpu, verbose, cpu_cores, inter_threads, intra_threads)
     testInfo.full_suite = (
         test_ids is None or
