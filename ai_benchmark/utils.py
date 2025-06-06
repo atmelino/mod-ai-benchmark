@@ -257,7 +257,6 @@ def compute_stats(results):
 
 
 def print_test_results(prefix, batch_size, dimensions, mean, std):
-    global resultCollector
     if std > 1 and mean > 100:
         prt_str = "%s | batch=%d, size=%dx%d: %.d ± %.d ms" % (
             prefix, batch_size, dimensions[1], dimensions[2], round(mean), round(std))
@@ -265,7 +264,16 @@ def print_test_results(prefix, batch_size, dimensions, mean, std):
         prt_str = "%s | batch=%d, size=%dx%d: %.1f ± %.1f ms" % (
             prefix, batch_size, dimensions[1], dimensions[2], mean, std)
     logger.info(prt_str)
-    resultCollector.append({"prefix":prefix,"mean":mean,"std":std})
+
+def collectResults(test,prefix, batch_size, dimensions, mean, std):
+    global resultCollector
+    if std > 1 and mean > 100:
+        prt_str = "%s | batch=%d, size=%dx%d: %.d ± %.d ms" % (
+            prefix, batch_size, dimensions[1], dimensions[2], round(mean), round(std))
+    else:
+        prt_str = "%s | batch=%d, size=%dx%d: %.1f ± %.1f ms" % (
+            prefix, batch_size, dimensions[1], dimensions[2], mean, std)
+    resultCollector.append({"test":test.model,"prefix":prefix,"mean":mean,"std":std})
 
 def print_intro():
     import ai_benchmark
@@ -479,7 +487,6 @@ def run_tests(
         inter_threads=None,
         intra_threads=None,
     ):
-    print(resultCollector)
 
     # print(test_ids)
     testInfo = TestInfo(_type, precision, use_cpu, verbose, cpu_cores, inter_threads, intra_threads)
@@ -565,6 +572,7 @@ def run_tests(
 
                     prefix = "%d.%d - inference" % (test.id, sub_id)
                     print_test_results(prefix, subTest.batch_size, subTest.get_input_dims(), time_mean, time_std)
+                    collectResults(test,prefix, subTest.batch_size, subTest.get_input_dims(), time_mean, time_std)
                     sub_id += 1
 
             if training:
@@ -623,5 +631,5 @@ def run_tests(
     public_results = print_scores(testInfo, public_results)
 
     os.chdir(start_dir)
-    print(resultCollector)
+    # print(resultCollector)
     return testInfo, public_results, resultCollector

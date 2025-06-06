@@ -1,4 +1,5 @@
 import sys
+import pandas as pd
 
 from ai_benchmark import AIBenchmark
 
@@ -14,9 +15,14 @@ test_ids = [
 testInfo, public_results, resultCollector = AIBenchmark().run(test_ids=test_ids)
 # print(testInfo)
 # print(public_results)
-print(resultCollector)
+# print(resultCollector)
+print(resultCollector[0])
+# print(resultCollector.len())
 
 for r in resultCollector:
     print(r)
     print(r['prefix'])
-    
+
+
+df=pd.DataFrame(resultCollector)
+print(df)
