@@ -7,9 +7,33 @@ from ai_benchmark import AIBenchmark
 # results = benchmark.run()
 print(f"Python {sys.version}")
 
+# test_ids = [
+#     "1",
+#     "2",
+#     "3",
+#     "4",
+# ]
+# test_ids = [
+#     "5",
+#     "6",
+#     "7",
+#     "8",
+# ]
+
+# test_ids = [
+#     "9",
+#     "10",
+#     "11",
+#     "12",
+#     "13",
+# ]
 test_ids = [
-    "3",
-    "5",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
 ]
 
 testInfo, public_results, resultCollector = AIBenchmark().run(test_ids=test_ids)
