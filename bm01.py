@@ -14,15 +14,23 @@ test_ids = [
 
 testInfo, public_results, resultCollector = AIBenchmark().run(test_ids=test_ids)
 # print(testInfo)
+print("*  CPU: %s", testInfo.cpu_model)
+
 # print(public_results)
 # print(resultCollector)
 print(resultCollector[0])
 # print(resultCollector.len())
 
-for r in resultCollector:
-    print(r)
-    print(r['prefix'])
-
+# for r in resultCollector:
+#     print(r)
 
 df=pd.DataFrame(resultCollector)
 print(df)
+df=df.transpose()
+print(df)
+
+df.to_csv('output.csv', index=False)
+
+    # if std > 1 and mean > 100:
+    #         mean=round(mean)
+    #         round=round(std)

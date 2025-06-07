@@ -265,15 +265,25 @@ def print_test_results(prefix, batch_size, dimensions, mean, std):
             prefix, batch_size, dimensions[1], dimensions[2], mean, std)
     logger.info(prt_str)
 
+
+def init_resultCollector(testInfo):
+    # hardware=testInfo.cpu_model
+    for gpu_id, gpu_info in enumerate(testInfo.gpu_devices):
+        hardware=gpu_info[0]
+    resultCollector.append({"row1":"hardware","row2":hardware})
+    resultCollector.append({"row1":"TF Build","row2":testInfo.tf_version})
+
+
 def collectResults(test,prefix, batch_size, dimensions, mean, std):
     global resultCollector
-    if std > 1 and mean > 100:
-        prt_str = "%s | batch=%d, size=%dx%d: %.d ± %.d ms" % (
-            prefix, batch_size, dimensions[1], dimensions[2], round(mean), round(std))
-    else:
-        prt_str = "%s | batch=%d, size=%dx%d: %.1f ± %.1f ms" % (
-            prefix, batch_size, dimensions[1], dimensions[2], mean, std)
-    resultCollector.append({"test":test.model,"prefix":prefix,"mean":mean,"std":std})
+    # resultCollector.append({"test":test.model,"prefix":prefix,"mean":mean,"std":std})
+    # resultCollector.append({"test":test.model,"mean":mean})
+    resultCollector.append({"row1":test.model,"row2":mean})
+
+
+def finish_resultCollector(testInfo):
+    resultCollector.append({"row1":"AI-Score","row2":testInfo.results.ai_score})
+
 
 def print_intro():
     import ai_benchmark
@@ -496,6 +506,8 @@ def run_tests(
     )
 
     print_test_info(testInfo)
+    init_resultCollector(testInfo)
+
     time.sleep(1)
 
     benchmark_tests = TestConstructor().get_tests(test_ids)
@@ -623,12 +635,14 @@ def run_tests(
 
                     prefix = "%d.%d - training " % (test.id, sub_id)
                     print_test_results(prefix, subTest.batch_size, subTest.get_input_dims(), time_mean, time_std)
+                    collectResults(test,prefix, subTest.batch_size, subTest.get_input_dims(), time_mean, time_std)
                     sub_id += 1
 
         sess.close()
 
     testInfo.results = benchmark_results
     public_results = print_scores(testInfo, public_results)
+    finish_resultCollector(testInfo)
 
     os.chdir(start_dir)
     # print(resultCollector)
