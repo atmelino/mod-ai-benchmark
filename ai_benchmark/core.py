@@ -54,6 +54,10 @@ class AIBenchmark:
         # test_ids = [
         #     "1",
         # ]
+        test_ids = [
+            "1",
+            "2",
+        ]
         print("test_ids=",test_ids)    
 
         testInfo, public_results, resultCollector=utils.run_tests(
