@@ -9,31 +9,8 @@ from ai_benchmark import AIBenchmark
 # results = benchmark.run()
 print(f"Python {sys.version}")
 
-# test_ids = [
-#     "1",
-#     "2",
-#     "3",
-#     "4",
-#     "5",
-#     "6",
-#     "7",
-#     "8",
-#     "9",
-#     "10",
-#     "11",
-#     "12",
-#     "13",
-#     "14",
-#     "15",
-#     "16",
-#     "17",
-#     # "18",
-#     "19",
-# ]
-
-test_ids = [
-    "1",
-]
+test_ids = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","19",]
+test_ids = ["3",]
 
 testInfo, public_results, resultCollector = AIBenchmark().run(test_ids=test_ids)
 # print(testInfo)
