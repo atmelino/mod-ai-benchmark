@@ -50,6 +50,10 @@ class AIBenchmark:
 
     def run(self, precision="normal", test_ids=None, training=True, inference=True, micro=False,
             cpu_cores=None, inter_threads=None, intra_threads=None):
+        test_ids = [
+            "1",
+            "2",
+        ]
         print("test_ids=",test_ids)    
         return utils.run_tests(
             training=training,
