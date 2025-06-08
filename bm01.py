@@ -29,9 +29,9 @@ print(f"Python {sys.version}")
 #     "19",
 # ]
 
-# test_ids = [
-#     "1",
-# ]
+test_ids = [
+    "1",
+]
 
 testInfo, public_results, resultCollector = AIBenchmark().run(test_ids=test_ids)
 # print(testInfo)
