@@ -51,28 +51,55 @@ class AIBenchmark:
 
     def run(self, precision="normal", test_ids=None, training=True, inference=True, micro=False,
             cpu_cores=None, inter_threads=None, intra_threads=None):
-        # test_ids = [
-        #     "1",
-        # ]
-        # test_ids = [
-        #     "1",
-        #     "2",
-        # ]
-        test_ids = [
-            "16",
-            "17",
-            # "18",
-            "19",
-        ]
-        test_ids = [
-            # "16",
-            # "17",
-            # "18",
-            "19",
-        ]
-        print("test_ids=",test_ids)    
+        if False:
+            # # test_ids = [
+            # #     "1",
+            # # ]
+            # # test_ids = [
+            # #     "1",
+            # #     "2",
+            # # ]
+            # test_ids = [
+            #     "16",
+            #     "17",
+            #     # "18",
+            #     "19",
+            # ]
+            # test_ids = [
+            #     # "16",
+            #     # "17",
+            #     # "18",
+            #     "19",
+            # ]
+            print("test_ids=",test_ids)    
 
-        testInfo, public_results, resultCollector=utils.run_tests(
+            testInfo, public_results, resultCollector=utils.run_tests(
+                training=training,
+                inference=inference,
+                micro=micro,
+                verbose=self.verbose,
+                use_cpu=self.use_cpu,
+                precision=precision,
+                _type="full",
+                start_dir=self.cwd,
+                test_ids=test_ids,
+                cpu_cores=cpu_cores,
+                inter_threads=inter_threads,
+                intra_threads=intra_threads,
+            )
+
+            # print(resultCollector[0])
+            # df=pd.DataFrame(resultCollector)
+            # print(df)
+            # df=df.transpose()
+            # print(df)
+
+            # df.to_csv('myoutput.csv', index=False)
+
+            return testInfo, public_results, resultCollector
+
+        return urt
+        return utils.run_tests(
             training=training,
             inference=inference,
             micro=micro,
@@ -86,29 +113,3 @@ class AIBenchmark:
             inter_threads=inter_threads,
             intra_threads=intra_threads,
         )
-
-        print(resultCollector[0])
-        df=pd.DataFrame(resultCollector)
-        print(df)
-        df=df.transpose()
-        print(df)
-
-        df.to_csv('myoutput.csv', index=False)
-
-        return testInfo, public_results, resultCollector
-
-        # return urt
-        # return utils.run_tests(
-        #     training=training,
-        #     inference=inference,
-        #     micro=micro,
-        #     verbose=self.verbose,
-        #     use_cpu=self.use_cpu,
-        #     precision=precision,
-        #     _type="full",
-        #     start_dir=self.cwd,
-        #     test_ids=test_ids,
-        #     cpu_cores=cpu_cores,
-        #     inter_threads=inter_threads,
-        #     intra_threads=intra_threads,
-        # )
