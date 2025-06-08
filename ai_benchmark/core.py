@@ -54,9 +54,15 @@ class AIBenchmark:
         # test_ids = [
         #     "1",
         # ]
+        # test_ids = [
+        #     "1",
+        #     "2",
+        # ]
         test_ids = [
-            "1",
-            "2",
+            "16",
+            "17",
+            "18",
+            "19",
         ]
         print("test_ids=",test_ids)    
 
