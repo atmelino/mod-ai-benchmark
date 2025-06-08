@@ -31,7 +31,6 @@ print(f"Python {sys.version}")
 
 test_ids = [
     "1",
-    "2",
 ]
 
 testInfo, public_results, resultCollector = AIBenchmark().run(test_ids=test_ids)

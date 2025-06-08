@@ -52,7 +52,6 @@ class AIBenchmark:
             cpu_cores=None, inter_threads=None, intra_threads=None):
         test_ids = [
             "1",
-            "2",
         ]
         print("test_ids=",test_ids)    
         return utils.run_tests(
