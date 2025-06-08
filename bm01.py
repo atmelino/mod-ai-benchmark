@@ -1,5 +1,7 @@
 import sys
 import pandas as pd
+# for Kaggle:
+# sys.path.append('./mod-ai-benchmark')
 
 from ai_benchmark import AIBenchmark
 
