@@ -51,9 +51,9 @@ class AIBenchmark:
 
     def run(self, precision="normal", test_ids=None, training=True, inference=True, micro=False,
             cpu_cores=None, inter_threads=None, intra_threads=None):
-        test_ids = [
-            "1",
-        ]
+        # test_ids = [
+        #     "1",
+        # ]
         print("test_ids=",test_ids)    
 
         testInfo, public_results, resultCollector=utils.run_tests(
